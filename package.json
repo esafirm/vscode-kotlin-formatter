@@ -1,44 +1,30 @@
 {
-    "name": "formatter-sample",
-    "displayName": "formatter-sample",
-    "description": "",
-    "version": "0.0.1",
-    "publisher": "jrieken",
-    "engines": {
-        "vscode": "^1.6.0"
-    },
-    "categories": [
-        "Other"
-    ],
-    "activationEvents": [
-        "onLanguage:foo-lang"
-    ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "languages": [
-            {
-                "id": "foo-lang",
-                "aliases": [
-                    "Foo"
-                ],
-                "extensions": [
-                    "foo"
-                ]
-            }
-        ],
-        "commands": [
-            {
-                "command": "extension.format-foo",
-                "title": "(Bad) Format Foo Files"
-            }
-        ]
-    },
-    "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install && tsc"
-    },
-    "devDependencies": {
-        "@types/node": "*",
-        "typescript": "2.0.6",
-        "vscode": "^1.1.21"
-    }
+  "name": "kotlin-formatter",
+  "displayName": "Kotlin Formatter",
+  "description": "",
+  "version": "0.0.1",
+  "publisher": "esafirm",
+  "engines": {
+    "vscode": "^1.6.0"
+  },
+  "categories": [
+    "Formatters"
+  ],
+  "activationEvents": [
+    "onLanguage:kotlin",
+    "onCommand:ktlint.format"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {},
+  "scripts": {
+    "postinstall": "node ./node_modules/vscode/bin/install && tsc"
+  },
+  "devDependencies": {
+    "@types/node": "*",
+    "typescript": "2.0.6",
+    "vscode": "^1.1.21"
+  },
+  "dependencies": {
+    "ktlint": "0.0.5"
+  }
 }

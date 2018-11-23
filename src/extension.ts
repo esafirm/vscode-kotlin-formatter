@@ -1,33 +1,42 @@
 'use strict';
 
 import * as vscode from 'vscode';
+import { ktlint } from 'ktlint';
 
-export function activate(context: vscode.ExtensionContext) {
+const childProcess = require('child_process');
+const { exec } = childProcess;
 
-    // 👎 formatter implemented as separate command
-    vscode.commands.registerCommand('extension.format-foo', () => {
-        const {activeTextEditor} = vscode.window;
+function runCommand(command) {
+  exec(command, (err, stdout, stderr) => {
+    // the *entire* stdout and stderr (buffered)
+    console.log(stdout);
+    console.log(stderr);
 
-        if (activeTextEditor && activeTextEditor.document.languageId === 'foo-lang') {
-            const {document} = activeTextEditor;
-            const firstLine = document.lineAt(0);
-            if (firstLine.text !== '42') {
-                const edit = new vscode.WorkspaceEdit();
-                edit.insert(document.uri, firstLine.range.start, '42\n');
-                return vscode.workspace.applyEdit(edit)
-            }
-        }
-    });
-
-    // 👍 formatter implemented using API
-    vscode.languages.registerDocumentFormattingEditProvider('foo-lang', {
-        provideDocumentFormattingEdits(document: vscode.TextDocument): vscode.TextEdit[] {
-            const firstLine = document.lineAt(0);
-            if (firstLine.text !== '42') {
-                return [vscode.TextEdit.insert(firstLine.range.start, '42\n')];
-            }
-        }
-    });
+    if (err) {
+      console.log('Could not execute the command');
+      console.log(err);
+      // node couldn't execute the command
+      return;
+    }
+  });
 }
 
+export function activate(context: vscode.ExtensionContext) {
+  const supportedDocuments: vscode.DocumentSelector = [{ language: 'kotlin' }];
 
+  // 👍 formatter implemented using API
+  const formatter = vscode.languages.registerDocumentFormattingEditProvider(
+    supportedDocuments,
+    {
+      provideDocumentFormattingEdits(
+        document: vscode.TextDocument
+      ): vscode.TextEdit[] {
+        ktlint(`-F ${document.uri.path}`);
+        const firstLine = document.lineAt(0);
+        return [vscode.TextEdit.insert(firstLine.range.start, '')];
+      }
+    }
+  );
+
+  context.subscriptions.push(formatter);
+}
