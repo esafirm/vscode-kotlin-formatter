@@ -1,10 +1,14 @@
-# Good and Bad Formatter
+# Kotlin Formatter for VSCode
 
+Right now the only feature of this extension is to format the active document editor.
+This formatter use [ktlint](https://github.com/shyiko/ktlint) as it's formatter.
 
-This is a sample for a simple (and stupid) formatter that integrates into VS Code in two way: Once as a [comm](https://github.com/jrieken/vscode-formatter-sample/blob/master/src/extension.ts#L8)[and](https://github.com/jrieken/vscode-formatter-sample/blob/master/package.json#L31) and once (better) 
-via the [formatter](https://github.com/jrieken/vscode-formatter-sample/blob/master/src/extension.ts#L23)-api. The latter as the following advantages:
+# What's Next
 
-* is less code
-* is invoked from the formatter actions and keybindings
-* is invoked from format on save
-* is future proof for things like *format all files in folders* etc
+- Configurable formatting
+- Format entire kotlin files / directory
+- Optional formatting (only warning message) (Is this a good idea? )
+
+# License
+
+MIT
