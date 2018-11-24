@@ -1,7 +1,7 @@
 # Kotlin Formatter for VSCode
 
 Right now the only feature of this extension is to format the active document editor.
-This formatter use [ktlint](https://github.com/shyiko/ktlint) as it's formatter.
+This formatter use [ktlint](https://github.com/shyiko/ktlint) as its formatter.
 
 # What's Next
 

@@ -2,7 +2,7 @@
   "name": "kotlin-formatter",
   "displayName": "Kotlin Formatter",
   "description": "",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "esafirm",
   "repository": {
     "url": "https://github.com/esafirm/vscode-kotlin-formatter"
@@ -10,6 +10,7 @@
   "engines": {
     "vscode": "^1.6.0"
   },
+  "icon": "icon/kformatter.png",
   "categories": [
     "Formatters"
   ],
